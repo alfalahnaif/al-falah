@@ -1,5 +1,7 @@
 # Owner decisions for the interface design system
 
+> **Task 006 update, 2026-11-22:** The owner approved integrating `lucide_icons_flutter` 4.0.3 after technical/license checks. That exact version is pinned and used only in the shared icon adapter. The owner reports local licensed access to original Thmanyah files; app embedding, app-store redistribution and public-repository distribution remain unapproved. The app continues to use a fallback interface font.
+
 > **Task 005 update, 2026-11-22:** The owner approved **A2 — Elegant & Traditional: Calm & Balanced**, including the supplied light/dark palette and restrained surface treatment. Thmanyah remains the chosen interface family but its binaries and Flutter packaging are **not cleared**. Lucide is the preferred icon direction, **not authorization to install** `lucide_icons_flutter`; see [package audit](LUCIDE_DEPENDENCY_AUDIT.md). The original Task 004 decision record below is retained for provenance.
 
 **Recorded:** 2026-11-21 (Asia/Riyadh). This is a decision register, not approval to download fonts, change screens or distribute binaries. The owner's current instruction selects **Thmanyah Font as the primary interface typeface** and explicitly keeps the Quran Mushaf font separate. The existing [approved MVP decisions](../decisions/APPROVED_MVP_DECISIONS_2026-11-16.md) retain the 1441H Hafs target and release gates.
@@ -12,7 +14,7 @@
 | Longer interface copy: Serif Text | **Optional proposal** | Decide only after readability comparison with Sans. |
 | Visual direction A2 and supplied light/dark palette | **Approved 2026-11-22** | Implemented as interface tokens; component contrast remains subject to testing and device review. No navigation redesign approved. |
 | Spacing and shape values supplied in Task 005 | **Approved for foundation** | Implemented 4, 8, 12, 16, 24, 32 dp; 8, 14, 18, 20 dp radii. Font metrics and responsive behavior still need device review. |
-| Lucide icon direction | **Preferred; package installation pending** | Version and license audit in [LUCIDE_DEPENDENCY_AUDIT.md](LUCIDE_DEPENDENCY_AUDIT.md); framework icons currently sit behind a semantic mapping. |
+| Lucide icon direction and `lucide_icons_flutter` 4.0.3 | **Integration approved in Task 006, 2026-11-22** | Version pinned and mapped through the shared adapter; licenses and technical checks in [LUCIDE_DEPENDENCY_AUDIT.md](LUCIDE_DEPENDENCY_AUDIT.md). |
 | Thmanyah font acquisition and public-source handling | **Not approved** | The [license](https://font.thmanyah.com/licenses) (accessed 2026-11-21) prohibits standalone file redistribution/upload; owner should approve a compliant private handling plan only after Thmanyah's written clarification. |
 | Android/iOS compiled-app embedding and store distribution | **License clarification required** | Confirm whether standard Flutter asset bundles meet the no-independent-extraction restriction; see [typography audit](THMANYAH_TYPOGRAPHY.md). |
 | Mushaf font, page source and layout | **Separate; unresolved** | Preserve the existing [source approval gates](../SOURCE_APPROVAL_REGISTER.md); Thmanyah must never substitute for the 1441H Mushaf typeface. |

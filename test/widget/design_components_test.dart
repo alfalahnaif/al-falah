@@ -8,6 +8,54 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
 void main() {
+  testWidgets('icon actions expose one semantic node each', (tester) async {
+    var taps = 0;
+    await tester.pumpWidget(
+      _host(
+        Column(
+          children: [
+            AppIconButton(
+              icon: AppIconName.back,
+              label: 'رجوع',
+              onPressed: () => taps++,
+            ),
+            const AppIconButton(icon: AppIconName.back, label: 'معطل'),
+          ],
+        ),
+      ),
+    );
+
+    final enabled = tester.getSemantics(find.byType(AppIconButton).first);
+    final disabled = tester.getSemantics(find.byType(AppIconButton).last);
+    expect(
+      enabled,
+      matchesSemantics(
+        label: 'رجوع',
+        textDirection: TextDirection.rtl,
+        isButton: true,
+        hasEnabledState: true,
+        isEnabled: true,
+        isFocusable: true,
+        hasTapAction: true,
+      ),
+    );
+    expect(enabled.childrenCountInTraversalOrder, 0);
+    expect(
+      disabled,
+      matchesSemantics(
+        label: 'معطل',
+        textDirection: TextDirection.rtl,
+        isButton: true,
+        hasEnabledState: true,
+      ),
+    );
+    expect(disabled.childrenCountInTraversalOrder, 0);
+    await tester.tap(find.byType(IconButton).first);
+    expect(taps, 1);
+    await tester.tap(find.byType(IconButton).last);
+    expect(taps, 1);
+  });
+
   testWidgets('system brightness selects the matching theme', (tester) async {
     tester.platformDispatcher.platformBrightnessTestValue = Brightness.dark;
     addTearDown(tester.platformDispatcher.clearPlatformBrightnessTestValue);
@@ -67,6 +115,20 @@ void main() {
     );
     expect(loading.onPressed, isNull);
     expect(find.bySemanticsLabel('انتظار، جارٍ التحميل'), findsOneWidget);
+    final loadingSemantics = tester.getSemantics(
+      find.widgetWithText(AppButton, 'انتظار'),
+    );
+    expect(
+      loadingSemantics,
+      matchesSemantics(
+        label: 'انتظار، جارٍ التحميل',
+        textDirection: TextDirection.rtl,
+        isButton: true,
+        hasEnabledState: true,
+        isLiveRegion: true,
+      ),
+    );
+    expect(loadingSemantics.childrenCountInTraversalOrder, 0);
   });
 
   testWidgets('card uses outlined, flat styling and interactive minimum', (
@@ -102,10 +164,12 @@ void main() {
     );
 
     final icons = tester.widgetList<Icon>(find.byType(Icon)).toList();
-    expect(icons[0].icon, Icons.home_outlined);
+    expect(icons[0].icon!.fontFamily, 'Lucide');
+    expect(icons[0].icon!.fontPackage, 'lucide_icons_flutter');
+    expect(icons[0].icon!.codePoint, 57589);
     expect(icons[0].size, AppIconSizes.regular);
     expect(icons[0].color, AppTheme.light.colorScheme.onSurface);
-    expect(icons[1].icon, Icons.arrow_forward);
+    expect(icons[1].icon!.codePoint, 57417);
   });
 
   testWidgets('back icon points backward in LTR and compact size is 20', (
@@ -124,7 +188,7 @@ void main() {
     );
 
     final icon = tester.widget<Icon>(find.byType(Icon));
-    expect(icon.icon, Icons.arrow_back);
+    expect(icon.icon!.codePoint, 57416);
     expect(icon.size, AppIconSizes.compact);
   });
 

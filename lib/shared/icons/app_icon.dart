@@ -1,4 +1,5 @@
 import 'package:al_falah/app/theme/app_tokens.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:material_ui/material_ui.dart';
 
 /// Add mappings when a feature actually uses them, not for hypothetical screens.
@@ -15,9 +16,11 @@ class AppIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final direction = Directionality.of(context);
     final data = switch (name) {
-      AppIconName.home => Icons.home_outlined,
+      AppIconName.home => LucideIcons.home,
       AppIconName.back =>
-        direction == TextDirection.rtl ? Icons.arrow_forward : Icons.arrow_back,
+        direction == TextDirection.rtl
+            ? LucideIcons.arrowRight
+            : LucideIcons.arrowLeft,
     };
     return Icon(
       data,
@@ -40,11 +43,15 @@ class AppIconButton extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
 
+  // Keep one spoken node; IconButton's tooltip remains available visually.
   @override
   Widget build(BuildContext context) => Semantics(
     label: label,
     button: true,
     enabled: onPressed != null,
+    focusable: onPressed != null,
+    onTap: onPressed,
+    excludeSemantics: true,
     child: IconButton(
       tooltip: label,
       onPressed: onPressed,

@@ -38,6 +38,21 @@ void main() {
   });
 
   for (final colors in [AppColors.light, AppColors.dark]) {
+    test('${colors.brightness} focused controls use the focus token', () {
+      final theme = colors.brightness == Brightness.light
+          ? AppTheme.light
+          : AppTheme.dark;
+      final focusState = {WidgetState.focused};
+      expect(
+        theme.outlinedButtonTheme.style!.side!.resolve(focusState)!.color,
+        colors.focusIndicator,
+      );
+      expect(
+        theme.iconButtonTheme.style!.side!.resolve(focusState)!.color,
+        colors.focusIndicator,
+      );
+    });
+
     test('${colors.brightness} text and state pairs meet contrast targets', () {
       expect(
         _contrast(colors.onPrimary, colors.primary),
