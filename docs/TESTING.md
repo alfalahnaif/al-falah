@@ -1,5 +1,7 @@
 # Testing and Quality Gates
 
+> **Typography update, 2026-11-22:** IBM Plex Sans Arabic is bundled under OFL-1.1 for interface text. CI uses the committed original TTF assets and needs no private font, secret or runtime download. `test/widget/ibm_plex_typography_test.dart` checks assets, Arabic RTL, both themes and 100%–200% neutral mixed-script layout. These tests do not replace Android/iOS visual and assistive-technology review. See [source record](design/IBM_PLEX_SANS_ARABIC.md).
+
 ## Test layers
 
 ### Unit

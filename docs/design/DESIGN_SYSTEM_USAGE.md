@@ -1,5 +1,7 @@
 # Al-Falah interface design system
 
+> **Typography decision, 2026-11-22:** The interface now uses bundled [IBM Plex Sans Arabic](IBM_PLEX_SANS_ARABIC.md). The earlier Thmanyah preference and fallback-font status in historical Task 004–006 documents are superseded. The Mushaf font remains separate.
+
 **Implemented:** 2026-11-22. **Direction:** owner-approved A2, Elegant & Traditional: Calm & Balanced. These are interface tokens only. The 1441H Hafs Mushaf has separate source, typography and rights gates in [the source approval register](../SOURCE_APPROVAL_REGISTER.md).
 
 ## Where to use each layer
@@ -35,7 +37,7 @@ Spacing is `4, 8, 12, 16, 24, 32` logical pixels. Radii are `8` controls, `14` b
 
 ## Font and icon integration gates
 
-The current `TextTheme` sets no font family, so the SDK/platform fallback is rendered. After written Thmanyah clarification and owner approval, inspect the original file metadata and weight mapping, then configure only the approved family IDs through `AppTypography.build(displayFamily: ..., sansFamily: ...)` in `AppTheme`. Never use this interface theme for Mushaf content. No raw font should enter the public repository under the current license assessment; see [typography audit](THMANYAH_TYPOGRAPHY.md) and [official license](https://font.thmanyah.com/licenses) (accessed 2026-11-22).
+`AppTypography.family` names the bundled IBM Plex Sans Arabic interface family. Four original TTF weights are declared in `pubspec.yaml` and the OFL notice is bundled. `AppTheme` applies the family to both color schemes. See the [source and license record](IBM_PLEX_SANS_ARABIC.md). Never use this interface theme for Mushaf content. Future font changes should update this central token and theme, then recheck Arabic layout on devices.
 
 `AppIcon` maps only the implemented home/back semantics to the owner-approved, pinned Lucide 4.0.3 package. Feature widgets use `AppIconName` and must not import Lucide directly. Back chooses the correct outlined left/right icon from ambient directionality. The shared `AppIconButton` exposes one labeled semantics node for enabled and disabled states while retaining the visible tooltip; see the [dependency and notice audit](LUCIDE_DEPENDENCY_AUDIT.md).
 

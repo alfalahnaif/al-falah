@@ -29,7 +29,19 @@ void main() {
     expect(text.bodyLarge, isNotNull);
     expect(text.labelLarge, isNotNull);
     expect(text.bodySmall, isNotNull);
-    expect(text.bodyLarge!.fontFamily, isNull);
+    expect(text.bodyLarge!.fontFamily, 'IBM Plex Sans Arabic');
+    expect(text.displayLarge!.fontFamily, 'IBM Plex Sans Arabic');
+    expect(text.labelLarge!.fontFamily, 'IBM Plex Sans Arabic');
+    expect(text.bodyLarge!.fontWeight, FontWeight.w400);
+    expect(text.displayLarge!.fontWeight, FontWeight.w600);
+    expect(
+      AppTheme.light.textTheme.bodyLarge!.fontFamily,
+      'IBM Plex Sans Arabic',
+    );
+    expect(
+      AppTheme.dark.textTheme.bodyLarge!.fontFamily,
+      'IBM Plex Sans Arabic',
+    );
     expect(AppSpacing.xs, 4);
     expect(AppSpacing.xxl, 32);
     expect(AppShapes.cardRadius, 18);

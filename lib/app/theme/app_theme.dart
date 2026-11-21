@@ -1,7 +1,7 @@
 import 'package:al_falah/app/theme/app_tokens.dart';
 import 'package:material_ui/material_ui.dart';
 
-/// The active UI themes use the SDK fallback font until Thmanyah is cleared.
+/// Light and dark interface themes use the bundled IBM Plex Sans Arabic family.
 abstract final class AppTheme {
   static ThemeData get light => _build(AppColors.light);
   static ThemeData get dark => _build(AppColors.dark);
@@ -72,6 +72,7 @@ abstract final class AppTheme {
       brightness: colors.brightness,
       colorScheme: scheme,
       scaffoldBackgroundColor: colors.background,
+      fontFamily: AppTypography.family,
       textTheme: text,
       iconTheme: IconThemeData(
         color: colors.onSurface,
