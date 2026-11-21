@@ -43,6 +43,12 @@
 - Dependency/license checks.
 - Android/iOS build checks where runners are available.
 
+### Task 006 workflow (2026-11-22)
+
+`.github/workflows/flutter-checks.yml` runs on pull requests and pushes to `main` with read-only repository permission. It uses Ubuntu 24.04, [Flutter 3.50.0](https://docs.flutter.dev/install/archive) (the SDK used for local validation; Dart 3.14.0), [actions/checkout v4.2.2](https://github.com/actions/checkout/releases/tag/v4.2.2) at commit `11bd71901bbe5b1630ceea73d27597364c9af683`, and [subosito/flutter-action v2.23.0](https://github.com/subosito/flutter-action/releases/tag/v2.23.0) at commit `1a449444c387b1966244ae4d4f8c696479add0b2` (sources accessed 2026-11-22). The action's exact Flutter version input avoids the moving stable-channel SDK. It runs `flutter pub get --enforce-lockfile`, a non-writing `dart format` check, `flutter analyze`, and `flutter test`.
+
+The workflow does not build an APK: that requires the Android toolchain and materially more runner time/storage, while this task already requires a local debug APK build. Keep local Android build validation before review/release; add a separate CI build only after runner requirements and cost are assessed. The workflow does not fetch Thmanyah or Quran assets or use secrets. A workflow file present in Git is not evidence of a successful remote run; check GitHub Actions after an owner-approved push.
+
 ## Release blockers
 - Any unexplained Quran text discrepancy.
 - Missing/incorrect source attribution or redistribution approval.

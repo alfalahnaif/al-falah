@@ -1,5 +1,7 @@
 # Thmanyah interface typography audit
 
+> **Task 006 readiness, 2026-11-22:** The owner reports having original Thmanyah files installed locally and a usage license. This is **reported local access**, not verification of the exact license grant or permission to embed and redistribute files in Android/iOS app packages. No Thmanyah file was accessed, copied, added to Git, or bundled in this task. The app still renders the SDK/Material fallback. Future integration remains at `AppTypography.build` and `AppTheme`, after written packaging and store-distribution clarification plus owner approval. The Mushaf font is wholly separate.
+
 > **Task 005 implementation status, 2026-11-22:** The active theme uses the SDK/Material fallback; no Thmanyah family name or binary is configured. `AppTypography.build` in [app_tokens.dart](../../lib/app/theme/app_tokens.dart) defines semantic `TextTheme` styles and optional display/sans family parameters. Exact family identifiers and weights will be supplied only after written packaging clearance, owner approval, original-file inspection and Android/iOS readability tests. These token sizes are provisional and are not verified Thmanyah metrics. Mushaf typography remains separate.
 
 **Status:** Thmanyah is the owner-approved **interface typeface preference**. Family roles, font files, weights, metrics and distribution method are proposals or open checks. **Research date:** 2026-11-21 (Asia/Riyadh). No font file was downloaded, installed, committed or bundled.
