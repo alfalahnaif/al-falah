@@ -1,5 +1,7 @@
 # Al-Falah visual directions — proposals
 
+> **Typography revision, 2026-11-22:** A2 remains the approved visual direction. The owner replaced the previously proposed Thmanyah typeface with [IBM Plex Sans Arabic](IBM_PLEX_SANS_ARABIC.md); typography references below are historical exploration, not current implementation instructions.
+
 > **Decision update, 2026-11-22:** The owner selected **A2 — Elegant & Traditional: Calm & Balanced** in Task 005. The comparison below is retained as the Task 004 research record. A2 uses warm ivory, deep plum, restrained muted gold, quiet borders and minimal elevation. No ornamental patterns, gradients, or new navigation were authorized. See [implemented tokens](DESIGN_SYSTEM_USAGE.md).
 
 **Prepared:** 2026-11-21 (Asia/Riyadh). The owner has approved Thmanyah as the **interface font preference**, not a final design direction, palette or implementation. The [official Thmanyah site](https://font.thmanyah.com/) (accessed 2026-11-21) presents Serif Display, Serif Text and Sans; the [license](https://font.thmanyah.com/licenses) (accessed 2026-11-21) still needs packaging clarification for this app. All three directions keep the [approved 1441H single-page Mushaf decision](../decisions/APPROVED_MVP_DECISIONS_2026-11-16.md) (2026-11-16) separate from interface styling. No visual assets or screens were created.
@@ -17,7 +19,7 @@ Color values below are **exploration swatches**, not approved tokens. Contrast f
 
 ## Common guardrails
 
-- Use Thmanyah **only** for interface typography; the approved Mushaf page uses a separately licensed, edition-matched source and renderer ([source decision](../research/RENDERER_SOURCE_DECISION.md), 2026-11-21).
+- Use the currently approved IBM Plex Sans Arabic **only** for interface typography; the approved Mushaf page uses a separately licensed, edition-matched source and renderer ([source decision](../research/RENDERER_SOURCE_DECISION.md), 2026-11-21).
 - A direction does not add screens or features beyond the [product requirements](../PRODUCT_REQUIREMENTS.md). Do not infer a new illustration, ornament or icon license from these proposals.
 - Keep light and dark variants of every surface and state. The dark palette in [token proposal](DESIGN_TOKENS_PROPOSAL.md) is a common test baseline, not an automatic transformation of any direction.
 - Compare at least Home, Surah index, Settings and the **empty/blocked reader state** as interface-only wireframes after owner approval. Do not use Quran text, page assets or unapproved religious copy in mockups.

@@ -45,3 +45,9 @@ No Firebase, hosted database, analytics backend, mandatory login, or runtime con
 
 - The owner selected **A2 — Elegant & Traditional: Calm & Balanced** for the application interface. The supplied warm ivory/plum light palette, dark palette, muted gold accent, quiet borders, near-zero card elevation, 4dp spacing scale and approximate component radii are authorized for the design-system foundation. See [design decisions](../design/OWNER_DECISIONS.md).
 - This selection does not authorize new screens, navigation changes, Thmanyah font binaries, the Lucide package, or Quran assets. The 1441H Hafs Mushaf decision and source-approval gates are unchanged.
+
+## 8. Interface typography replacement (owner decision recorded 2026-11-22)
+
+- The owner replaced the earlier **Thmanyah interface font preference** with **IBM Plex Sans Arabic**. The previous section 6 is retained as a historical decision, not an active font instruction.
+- The application may bundle unmodified IBM Plex Sans Arabic TTF files from [IBM's official repository](https://github.com/IBM/plex) under the [SIL OFL 1.1 license](https://github.com/IBM/plex/blob/master/packages/plex-sans-arabic/LICENSE.txt), with the required notice. See the [source, hashes and integration record](../design/IBM_PLEX_SANS_ARABIC.md).
+- This decision affects application interface typography only. The 1441H Hafs Mushaf font, source approval and qualified-review gates remain separate and unchanged.

@@ -177,53 +177,64 @@ abstract final class AppIconSizes {
   static const double regular = 24;
 }
 
-/// Semantic interface styles. Null families use the SDK/Material fallback.
-/// Approved Thmanyah family IDs can later be supplied here after rights clearance.
+/// Semantic interface styles. The Mushaf renderer has its own typography.
 abstract final class AppTypography {
-  static TextTheme build({String? displayFamily, String? sansFamily}) =>
-      TextTheme(
-        displayLarge: TextStyle(
-          fontFamily: displayFamily,
-          fontSize: 32,
-          fontWeight: FontWeight.w600,
-          height: 1.4,
-        ),
-        headlineMedium: TextStyle(
-          fontFamily: displayFamily,
-          fontSize: 26,
-          fontWeight: FontWeight.w600,
-          height: 1.4,
-        ),
-        titleLarge: TextStyle(
-          fontFamily: sansFamily,
-          fontSize: 22,
-          fontWeight: FontWeight.w600,
-          height: 1.45,
-        ),
-        titleMedium: TextStyle(
-          fontFamily: sansFamily,
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-          height: 1.5,
-        ),
-        bodyLarge: TextStyle(fontFamily: sansFamily, fontSize: 16, height: 1.6),
-        bodyMedium: TextStyle(
-          fontFamily: sansFamily,
-          fontSize: 16,
-          height: 1.6,
-        ),
-        bodySmall: TextStyle(fontFamily: sansFamily, fontSize: 14, height: 1.5),
-        labelLarge: TextStyle(
-          fontFamily: sansFamily,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-          height: 1.4,
-        ),
-        labelMedium: TextStyle(
-          fontFamily: sansFamily,
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-          height: 1.4,
-        ),
-      );
+  static const family = 'IBM Plex Sans Arabic';
+
+  static TextTheme build() => TextTheme(
+    displayLarge: TextStyle(
+      fontFamily: family,
+      fontSize: 32,
+      fontWeight: FontWeight.w600,
+      height: 1.4,
+    ),
+    headlineMedium: TextStyle(
+      fontFamily: family,
+      fontSize: 26,
+      fontWeight: FontWeight.w600,
+      height: 1.4,
+    ),
+    titleLarge: TextStyle(
+      fontFamily: family,
+      fontSize: 22,
+      fontWeight: FontWeight.w600,
+      height: 1.45,
+    ),
+    titleMedium: TextStyle(
+      fontFamily: family,
+      fontSize: 18,
+      fontWeight: FontWeight.w600,
+      height: 1.5,
+    ),
+    bodyLarge: TextStyle(
+      fontFamily: family,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      height: 1.6,
+    ),
+    bodyMedium: TextStyle(
+      fontFamily: family,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      height: 1.6,
+    ),
+    bodySmall: TextStyle(
+      fontFamily: family,
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      height: 1.5,
+    ),
+    labelLarge: TextStyle(
+      fontFamily: family,
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      height: 1.4,
+    ),
+    labelMedium: TextStyle(
+      fontFamily: family,
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      height: 1.4,
+    ),
+  );
 }

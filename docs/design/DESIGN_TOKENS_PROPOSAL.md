@@ -1,5 +1,7 @@
 # Semantic design tokens — proposal
 
+> **Typography revision, 2026-11-22:** The historical Thmanyah role and metric proposals below were superseded by the owner's [IBM Plex Sans Arabic decision](IBM_PLEX_SANS_ARABIC.md). Active typography lives in `AppTypography` and `AppTheme`; the A2 palette and geometry are unchanged.
+
 > **Implementation update, 2026-11-22:** The owner selected A2 and supplied its light/dark palette, 4dp spacing scale, and approximate radii in Task 005. The neutral/teal examples below remain historical Task 004 exploration; **they are not the active app theme**. Active values and roles are in [app_tokens.dart](../../lib/app/theme/app_tokens.dart), with usage in [DESIGN_SYSTEM_USAGE.md](DESIGN_SYSTEM_USAGE.md). Contrast for active pairs is covered by `test/unit/app_theme_test.dart`.
 
 **Prepared:** 2026-11-21 (Asia/Riyadh). These are design **test values**, not an approved implementation. Thmanyah is the approved interface family preference; exact files/metrics and delivery remain gated in [typography audit](THMANYAH_TYPOGRAPHY.md). The current app uses a temporary seed-color Material theme in [app.dart](../../lib/app/app.dart); no theme or dependency was changed.
