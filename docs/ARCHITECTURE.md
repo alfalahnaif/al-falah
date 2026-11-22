@@ -3,7 +3,7 @@
 ## Proposed stack
 - Flutter / Dart
 - Riverpod for state management and dependency injection
-- GoRouter for navigation
+- GoRouter for navigation — implemented as pinned `go_router` 18.1.4 for five base destinations; see [navigation architecture](architecture/NAVIGATION_ARCHITECTURE.md). Other proposed stack packages remain unapproved.
 - SQLite + Drift for local writable user data
 - just_audio for local audio playback
 - flutter_test and integration_test
