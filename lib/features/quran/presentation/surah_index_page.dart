@@ -7,7 +7,8 @@ class SurahIndexPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const FeatureShell(
-    title: AppStrings.surahIndex,
+    title: AppStrings.quranTab,
     message: AppStrings.contentUnavailable,
+    showBack: false,
   );
 }

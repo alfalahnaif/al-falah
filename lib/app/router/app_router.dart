@@ -1,7 +1,9 @@
 import 'package:al_falah/app/router/app_routes.dart';
 import 'package:al_falah/app/router/feature_shell.dart';
+import 'package:al_falah/app/router/main_navigation_shell.dart';
 import 'package:al_falah/core/localization/app_strings.dart';
 import 'package:al_falah/features/about/presentation/about_page.dart';
+import 'package:al_falah/features/adhkar/presentation/adhkar_page.dart';
 import 'package:al_falah/features/bookmarks/presentation/bookmarks_page.dart';
 import 'package:al_falah/features/home/presentation/home_page.dart';
 import 'package:al_falah/features/quran/presentation/surah_index_page.dart';
@@ -14,20 +16,47 @@ abstract final class AppRouter {
   static GoRouter create() => GoRouter(
     initialLocation: AppRoutes.homePath,
     routes: [
-      GoRoute(
-        name: AppRoutes.home,
-        path: AppRoutes.homePath,
-        builder: (context, state) => const HomePage(),
-      ),
-      GoRoute(
-        name: AppRoutes.surahIndex,
-        path: AppRoutes.surahIndexPath,
-        builder: (context, state) => const SurahIndexPage(),
-      ),
-      GoRoute(
-        name: AppRoutes.bookmarks,
-        path: AppRoutes.bookmarksPath,
-        builder: (context, state) => const BookmarksPage(),
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) =>
+            MainNavigationShell(navigationShell: navigationShell),
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: AppRoutes.home,
+                path: AppRoutes.homePath,
+                builder: (context, state) => const HomePage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: AppRoutes.surahIndex,
+                path: AppRoutes.surahIndexPath,
+                builder: (context, state) => const SurahIndexPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: AppRoutes.bookmarks,
+                path: AppRoutes.bookmarksPath,
+                builder: (context, state) => const BookmarksPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: AppRoutes.adhkar,
+                path: AppRoutes.adhkarPath,
+                builder: (context, state) => const AdhkarPage(),
+              ),
+            ],
+          ),
+        ],
       ),
       GoRoute(
         name: AppRoutes.settings,

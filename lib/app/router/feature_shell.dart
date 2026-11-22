@@ -12,29 +12,33 @@ class FeatureShell extends StatelessWidget {
     required this.title,
     required this.message,
     this.action,
+    this.showBack = true,
     super.key,
   });
 
   final String title;
   final String message;
   final Widget? action;
+  final bool showBack;
 
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       automaticallyImplyLeading: false,
-      leading: AppIconButton(
-        icon: AppIconName.back,
-        label: AppStrings.back,
-        onPressed: () {
-          final router = GoRouter.of(context);
-          if (router.canPop()) {
-            router.pop();
-          } else {
-            router.goNamed(AppRoutes.home);
-          }
-        },
-      ),
+      leading: showBack
+          ? AppIconButton(
+              icon: AppIconName.back,
+              label: AppStrings.back,
+              onPressed: () {
+                final router = GoRouter.of(context);
+                if (router.canPop()) {
+                  router.pop();
+                } else {
+                  router.goNamed(AppRoutes.home);
+                }
+              },
+            )
+          : null,
       title: Semantics(header: true, child: Text(title)),
     ),
     body: SafeArea(

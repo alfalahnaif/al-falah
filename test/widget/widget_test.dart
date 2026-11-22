@@ -1,4 +1,5 @@
 import 'package:al_falah/app/app.dart';
+import 'package:al_falah/features/home/presentation/home_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -7,7 +8,7 @@ void main() {
     await tester.pumpWidget(const AlFalahApp());
 
     expect(find.text('الفلاح'), findsOneWidget);
-    expect(find.byType(Scaffold), findsOneWidget);
+    expect(find.byType(HomePage), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 

@@ -1,6 +1,7 @@
 import 'package:al_falah/app/app.dart';
 import 'package:al_falah/app/theme/app_theme.dart';
 import 'package:al_falah/app/theme/app_tokens.dart';
+import 'package:al_falah/features/home/presentation/home_page.dart';
 import 'package:al_falah/shared/icons/app_icon.dart';
 import 'package:al_falah/shared/widgets/app_button.dart';
 import 'package:al_falah/shared/widgets/app_card.dart';
@@ -62,7 +63,7 @@ void main() {
     await tester.pumpWidget(const AlFalahApp());
 
     expect(
-      Theme.of(tester.element(find.byType(Scaffold))).brightness,
+      Theme.of(tester.element(find.byType(HomePage))).brightness,
       Brightness.dark,
     );
     expect(find.text('الفلاح'), findsOneWidget);
@@ -190,6 +191,32 @@ void main() {
     final icon = tester.widget<Icon>(find.byType(Icon));
     expect(icon.icon!.codePoint, 57416);
     expect(icon.size, AppIconSizes.compact);
+  });
+
+  testWidgets('approved tab icons map to distinct Lucide symbols', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      _host(
+        const Row(
+          children: [
+            AppIcon(AppIconName.home),
+            AppIcon(AppIconName.quran),
+            AppIcon(AppIconName.bookmarks),
+            AppIcon(AppIconName.adhkar),
+            AppIcon(AppIconName.settings),
+          ],
+        ),
+      ),
+    );
+
+    final icons = tester.widgetList<Icon>(find.byType(Icon)).toList();
+    expect(icons, hasLength(5));
+    expect(icons.map((icon) => icon.icon!.codePoint).toSet(), hasLength(5));
+    for (final icon in icons) {
+      expect(icon.icon!.fontPackage, 'lucide_icons_flutter');
+      expect(icon.size, AppIconSizes.regular);
+    }
   });
 
   testWidgets('icon button has a label, focusable target, and disabled state', (
