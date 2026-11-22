@@ -13,6 +13,7 @@
 | Filled, outlined or text action with optional leading icon/loading | `AppButton` and `AppButtonVariant` | [`app_button.dart`](../../lib/shared/widgets/app_button.dart) |
 | Quiet bordered card, optionally interactive | `AppCard` | [`app_card.dart`](../../lib/shared/widgets/app_card.dart) |
 | Implemented semantic icons and labeled icon actions | `AppIcon`, `AppIconButton`, `AppIconName` | [`app_icon.dart`](../../lib/shared/icons/app_icon.dart) |
+| Four-tab A2 navigation, selected semantics and adaptive layout | `MainNavigationShell`; feature screens navigate using `AppRoutes` names | [`main_navigation_shell.dart`](../../lib/app/router/main_navigation_shell.dart) |
 
 Feature widgets should consume semantic roles, use directional layout, and let the system scale text. Add a semantic icon name only when an implemented feature needs it. `AppIconButton` requires a spoken label. Native Material controls are preferred when the wrapper adds no application behavior. Business rules and feature data stay outside theme and widget classes.
 
@@ -39,7 +40,9 @@ Spacing is `4, 8, 12, 16, 24, 32` logical pixels. Radii are `8` controls, `14` b
 
 `AppTypography.family` names the bundled IBM Plex Sans Arabic interface family. Four original TTF weights are declared in `pubspec.yaml` and the OFL notice is bundled. `AppTheme` applies the family to both color schemes. See the [source and license record](IBM_PLEX_SANS_ARABIC.md). Never use this interface theme for Mushaf content. Future font changes should update this central token and theme, then recheck Arabic layout on devices.
 
-`AppIcon` maps only the implemented home/back semantics to the owner-approved, pinned Lucide 4.0.3 package. Feature widgets use `AppIconName` and must not import Lucide directly. Back chooses the correct outlined left/right icon from ambient directionality. The shared `AppIconButton` exposes one labeled semantics node for enabled and disabled states while retaining the visible tooltip; see the [dependency and notice audit](LUCIDE_DEPENDENCY_AUDIT.md).
+`AppIcon` maps the implemented home, Quran, Bookmarks, Adhkar, Settings and back semantics to the owner-approved, pinned Lucide 4.0.3 package. Feature widgets use `AppIconName` and must not import Lucide directly. Back chooses the correct outlined left/right icon from ambient directionality. The shared `AppIconButton` exposes one labeled semantics node for enabled and disabled states while retaining the visible tooltip; see the [dependency and notice audit](LUCIDE_DEPENDENCY_AUDIT.md).
+
+The Task 009 main bar uses the existing A2 semantic colors and spacing, 48dp-plus targets, selected-tab screen-reader state and a visible focus border. It reflows to two rows on narrow or highly scaled screens without clamping text scale. The Home Quran card is an unavailable entry point, not a reader. See [navigation architecture](../architecture/NAVIGATION_ARCHITECTURE.md).
 
 ## Verification still needed on devices
 

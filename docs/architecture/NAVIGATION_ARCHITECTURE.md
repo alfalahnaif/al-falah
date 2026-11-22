@@ -1,4 +1,27 @@
-# Navigation foundation — Task 008
+# Navigation architecture
+
+## Current implementation — Task 009, 2026-11-22
+
+The owner approved **four permanent tabs**, in Arabic RTL logical-start order: **الرئيسية**, **القرآن**, **المحفوظات**, **الأذكار**. Settings and About/Licenses remain secondary pages. This replaces Task 008's temporary Home navigation actions. The approved A2 theme, IBM Plex Sans Arabic, Lucide adapter and Arabic locale remain active. No package or native-link configuration was added in Task 009.
+
+`AppRouter.create()` now contains a `StatefulShellRoute.indexedStack` with one branch for each tab. `MainNavigationShell` renders the four-item bottom bar and calls `goBranch`. Switching branches retains their widget state; tapping the active tab calls `goBranch(initialLocation: true)` to return that branch to its root. The router is still created once by `AlFalahApp`. Secondary `/settings` and `/about` routes live above the shell, so they temporarily hide the tab bar and normal back navigation returns to the originating tab. An unknown path still shows the Arabic error view and Home action.
+
+| Name | Path | Current destination |
+|---|---|---|
+| `home` | `/` | Home with Quran entry, quick access and Settings action |
+| `surahIndex` | `/surahs` | Quran tab; unavailable Surah Index shell |
+| `bookmarks` | `/bookmarks` | Bookmarks tab; unavailable state |
+| `adhkar` | `/adhkar` | Adhkar tab; unavailable state |
+| `settings` | `/settings` | Secondary settings shell |
+| `about` | `/about` | Secondary sources/licenses shell and software license page |
+
+At a tab root other than Home, Android system back selects Home. At the Home root, back is left to the platform. From Settings or About, system and app-bar back pop to the prior page. A directly opened secondary path has no prior page and its app-bar back returns Home. Tab roots have no app-bar back control. No tab tap pushes a duplicate route onto the stack.
+
+The bar is built from Material buttons with semantic Lucide icons and theme colors. Each item keeps its Arabic label and selected-tab semantics; focus gets the semantic focus-indicator border. `NavigationBar` in the installed `material_ui` version internally clamps label scaling, so this implementation uses a small route-specific bar that respects system text scaling. At widths below 360dp, or below 600dp with a scaled 14sp label reaching 21sp, it reflows to two RTL rows while keeping all four actions visible. The bar includes SafeArea insets and a subtle divider, without shadows. Home uses a neutral Quran card that explicitly says content is unavailable, plus Bookmarks and Adhkar quick actions. No Quran or adhkar data is present.
+
+The reader, actual Surah metadata, bookmarks persistence, adhkar collection, audio, search and onboarding remain unimplemented. Their source, rights, integrity and owner-review gates are unchanged. No public deep-link scheme or native App/Universal Link association is configured. Manual Android/iOS checks are still required for TalkBack/VoiceOver, real keyboard traversal, text scaling, system back and airplane-mode startup.
+
+## Historical Task 008 foundation (superseded where noted)
 
 **Implemented:** 2026-11-22 on `feat/navigation-foundation`. This is a route foundation, not the final navigation layout or a reader implementation. The approved A2 theme, IBM Plex Sans Arabic, Lucide adapter, Arabic locale and system light/dark selection remain active.
 

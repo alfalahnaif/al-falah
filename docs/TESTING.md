@@ -1,5 +1,7 @@
 # Testing and Quality Gates
 
+> **Main navigation update, 2026-11-22:** Task 009 widget tests cover four Arabic RTL tabs, route switching, active-tab semantics, focus styling, branch state, system back, secondary Settings/About, direct paths, light/dark themes and 100%–200% scaling. The Home Quran and Adhkar entries remain data-free. `flutter test` does not replace physical-device screen-reader, keyboard-traversal, airplane-mode or gesture review; see [current navigation architecture](architecture/NAVIGATION_ARCHITECTURE.md).
+
 > **Navigation update, 2026-11-22:** `test/widget/navigation_test.dart` exercises Task 008's Home and four shell routes, direct paths, stacked and system back, Arabic unknown-route handling, RTL, action semantics, router stability, both themes and 100%–200% text scaling. `go_router` 18.1.4 is locked; see [navigation architecture](architecture/NAVIGATION_ARCHITECTURE.md). Physical-device back, assistive technology, offline and deep-link checks remain manual release work.
 
 > **Typography update, 2026-11-22:** IBM Plex Sans Arabic is bundled under OFL-1.1 for interface text. CI uses the committed original TTF assets and needs no private font, secret or runtime download. `test/widget/ibm_plex_typography_test.dart` checks assets, Arabic RTL, both themes and 100%–200% neutral mixed-script layout. These tests do not replace Android/iOS visual and assistive-technology review. See [source record](design/IBM_PLEX_SANS_ARABIC.md).

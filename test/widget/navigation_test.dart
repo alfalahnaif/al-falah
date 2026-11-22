@@ -2,14 +2,19 @@ import 'package:al_falah/app/app.dart';
 import 'package:al_falah/app/router/app_router.dart';
 import 'package:al_falah/app/router/app_routes.dart';
 import 'package:al_falah/features/about/presentation/about_page.dart';
+import 'package:al_falah/features/adhkar/presentation/adhkar_page.dart';
 import 'package:al_falah/features/bookmarks/presentation/bookmarks_page.dart';
 import 'package:al_falah/features/home/presentation/home_page.dart';
 import 'package:al_falah/features/quran/presentation/surah_index_page.dart';
 import 'package:al_falah/features/settings/presentation/settings_page.dart';
-import 'package:al_falah/shared/icons/app_icon.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+
+Finder tab(String label) => find.descendant(
+  of: find.byKey(const ValueKey('main-navigation-bar')),
+  matching: find.text(label),
+);
 
 void main() {
   testWidgets('starts at Home in Arabic RTL', (tester) async {
@@ -26,24 +31,31 @@ void main() {
   });
 
   for (final destination in [
-    (label: 'فهرس السور', page: SurahIndexPage),
-    (label: 'الإشارات المرجعية', page: BookmarksPage),
-    (label: 'الإعدادات', page: SettingsPage),
+    (label: 'القرآن', page: SurahIndexPage, secondary: false),
+    (label: 'المحفوظات', page: BookmarksPage, secondary: false),
+    (label: 'الإعدادات', page: SettingsPage, secondary: true),
   ]) {
     testWidgets('opens ${destination.label} and returns to Home', (
       tester,
     ) async {
       await tester.pumpWidget(const AlFalahApp());
-      await tester.tap(find.text(destination.label));
+      await tester.tap(
+        destination.secondary
+            ? find.byTooltip(destination.label)
+            : tab(destination.label),
+      );
       await tester.pumpAndSettle();
 
       expect(find.byType(destination.page), findsOneWidget);
       final context = tester.element(find.byType(destination.page));
       expect(Directionality.of(context), TextDirection.rtl);
-      expect(find.byTooltip('رجوع'), findsOneWidget);
-      expect(find.bySemanticsLabel('رجوع'), findsOneWidget);
-
-      await tester.tap(find.byTooltip('رجوع'));
+      if (destination.secondary) {
+        expect(find.byTooltip('رجوع'), findsOneWidget);
+        expect(find.bySemanticsLabel('رجوع'), findsOneWidget);
+        await tester.tap(find.byTooltip('رجوع'));
+      } else {
+        await tester.tap(tab('الرئيسية'));
+      }
       await tester.pumpAndSettle();
       expect(find.byType(HomePage), findsOneWidget);
     });
@@ -53,7 +65,7 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(const AlFalahApp());
-    await tester.tap(find.text('الإعدادات'));
+    await tester.tap(find.byTooltip('الإعدادات'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('المصادر والتراخيص'));
     await tester.pumpAndSettle();
@@ -69,7 +81,7 @@ void main() {
 
   testWidgets('system back returns from Bookmarks to Home', (tester) async {
     await tester.pumpWidget(const AlFalahApp());
-    await tester.tap(find.text('الإشارات المرجعية'));
+    await tester.tap(tab('المحفوظات'));
     await tester.pumpAndSettle();
     expect(find.byType(BookmarksPage), findsOneWidget);
 
@@ -82,7 +94,7 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(const AlFalahApp());
-    await tester.tap(find.text('الإعدادات'));
+    await tester.tap(find.byTooltip('الإعدادات'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('المصادر والتراخيص'));
     await tester.pumpAndSettle();
@@ -96,6 +108,7 @@ void main() {
   for (final destination in [
     (path: AppRoutes.surahIndexPath, page: SurahIndexPage),
     (path: AppRoutes.bookmarksPath, page: BookmarksPage),
+    (path: AppRoutes.adhkarPath, page: AdhkarPage),
     (path: AppRoutes.settingsPath, page: SettingsPage),
     (path: AppRoutes.aboutPath, page: AboutPage),
   ]) {
@@ -110,7 +123,12 @@ void main() {
 
       expect(find.byType(destination.page), findsOneWidget);
       expect(router.routeInformationProvider.value.uri.path, destination.path);
-      await tester.tap(find.byTooltip('رجوع'));
+      if (destination.path == AppRoutes.settingsPath ||
+          destination.path == AppRoutes.aboutPath) {
+        await tester.tap(find.byTooltip('رجوع'));
+      } else {
+        await tester.tap(tab('الرئيسية'));
+      }
       await tester.pumpAndSettle();
       expect(find.byType(HomePage), findsOneWidget);
     });
@@ -137,7 +155,7 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(const AlFalahApp());
-    await tester.tap(find.text('فهرس السور'));
+    await tester.tap(tab('القرآن'));
     await tester.pumpAndSettle();
     final before = GoRouter.of(tester.element(find.byType(SurahIndexPage)));
 
@@ -157,7 +175,7 @@ void main() {
       tester.platformDispatcher.platformBrightnessTestValue = brightness;
       addTearDown(tester.platformDispatcher.clearPlatformBrightnessTestValue);
       await tester.pumpWidget(const AlFalahApp());
-      await tester.tap(find.text('الإشارات المرجعية'));
+      await tester.tap(tab('المحفوظات'));
       await tester.pumpAndSettle();
 
       final context = tester.element(find.byType(BookmarksPage));
@@ -166,8 +184,8 @@ void main() {
         Theme.of(context).textTheme.bodyLarge!.fontFamily,
         'IBM Plex Sans Arabic',
       );
-      expect(find.byType(AppIconButton), findsOneWidget);
-      expect(find.bySemanticsLabel('رجوع'), findsOneWidget);
+      expect(find.byKey(const ValueKey('main-navigation-bar')), findsOneWidget);
+      expect(tab('المحفوظات'), findsOneWidget);
     });
   }
 
@@ -185,8 +203,7 @@ void main() {
       });
       await tester.pumpWidget(const AlFalahApp());
       await tester.pumpAndSettle();
-      await tester.ensureVisible(find.text('الإعدادات'));
-      await tester.tap(find.text('الإعدادات'));
+      await tester.tap(find.byTooltip('الإعدادات'));
       await tester.pumpAndSettle();
       expect(find.byType(SettingsPage), findsOneWidget);
       expect(tester.takeException(), isNull);

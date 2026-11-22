@@ -9,5 +9,6 @@ class BookmarksPage extends StatelessWidget {
   Widget build(BuildContext context) => const FeatureShell(
     title: AppStrings.bookmarks,
     message: AppStrings.bookmarksUnavailable,
+    showBack: false,
   );
 }

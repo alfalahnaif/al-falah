@@ -83,6 +83,10 @@ void main() {
         greaterThanOrEqualTo(4.5),
       );
       expect(
+        _contrast(colors.primary, colors.surfaceVariant),
+        greaterThanOrEqualTo(4.5),
+      );
+      expect(
         _contrast(colors.error, colors.surface),
         greaterThanOrEqualTo(4.5),
       );
@@ -104,6 +108,10 @@ void main() {
       );
       expect(
         _contrast(colors.focusIndicator, colors.surface),
+        greaterThanOrEqualTo(3),
+      );
+      expect(
+        _contrast(colors.focusIndicator, colors.surfaceVariant),
         greaterThanOrEqualTo(3),
       );
       expect(

@@ -9,6 +9,9 @@ abstract final class AppRoutes {
   static const bookmarks = 'bookmarks';
   static const bookmarksPath = '/bookmarks';
 
+  static const adhkar = 'adhkar';
+  static const adhkarPath = '/adhkar';
+
   static const settings = 'settings';
   static const settingsPath = '/settings';
 
