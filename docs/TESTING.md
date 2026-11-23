@@ -1,5 +1,7 @@
 # Testing and Quality Gates
 
+> **Task 010 audit, 2026-11-23:** [UI validation matrix](quality/UI_VALIDATION_MATRIX.md) records six widget viewport/scale combinations, compact Home accessibility guidelines, safe areas, repeated navigation, Android emulator screenshots, airplane-mode Home startup, and device limitations. [UI/accessibility audit](quality/UI_ACCESSIBILITY_AUDIT.md) records an unresolved Pixel 8 API 37 emulator ANR during theme/text-scale changes. An APK build and widget passes do not close this runtime finding or substitute for TalkBack/VoiceOver review.
+
 > **Main navigation update, 2026-11-22:** Task 009 widget tests cover four Arabic RTL tabs, route switching, active-tab semantics, focus styling, branch state, system back, secondary Settings/About, direct paths, light/dark themes and 100%–200% scaling. The Home Quran and Adhkar entries remain data-free. `flutter test` does not replace physical-device screen-reader, keyboard-traversal, airplane-mode or gesture review; see [current navigation architecture](architecture/NAVIGATION_ARCHITECTURE.md).
 
 > **Navigation update, 2026-11-22:** `test/widget/navigation_test.dart` exercises Task 008's Home and four shell routes, direct paths, stacked and system back, Arabic unknown-route handling, RTL, action semantics, router stability, both themes and 100%–200% text scaling. `go_router` 18.1.4 is locked; see [navigation architecture](architecture/NAVIGATION_ARCHITECTURE.md). Physical-device back, assistive technology, offline and deep-link checks remain manual release work.
